@@ -1,0 +1,44 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+<input type="button" id="open_app" value="open app">
+<script>
+	
+	function iOS() {
+
+	  return  /iPad|iPhone|iPod/.test(navigator.platform);
+	  var iDevices = [
+	    'iPad Simulator',
+	    'iPhone Simulator',
+	    'iPod Simulator',
+	    'iPad',
+	    'iPhone',
+	    'iPod'
+	  ];
+
+	  while (iDevices.length) {
+	    if (navigator.platform === iDevices.pop()){ return true; }
+	  }
+
+	  return false;
+	}
+	function redirectUser(){
+			if(iOS()){
+					document.location = "protocol://";
+			}
+		
+			setTimeout(function(){
+				if(iOS()){
+					document.location = "https://itunes.apple.com/in/app/appname";
+				} else{
+					document.location = "http://example.com"; ///Success	
+				}
+			}, 3000);
+			return true;	
+	}
+	$(document).ready(function(){
+		$("#open_app").click(function(){
+			redirectUser();
+		});	
+	});
+			
+</script>
+
